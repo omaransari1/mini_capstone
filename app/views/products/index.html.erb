@@ -1,0 +1,22 @@
+<h1>All Available Products!!!</h1>
+<% @products.each_slice(3) do |three_products| %>
+  <div class="row">
+    <% three_products.each do |product| %>
+      <div class="col-md-4">
+        <div class="well">
+          <p><%= product.name %></p>
+          <a href="/products/<%= product.id %>" title="View Product">View Product</a>
+          <p><%= product.sale_message %>
+          <p>$<%= product.price %></p>
+          <p>Tax: <%= product.tax %></p>
+          <p>Total: <%= number_to_currency(product.total)%></p>
+          <img src="<%=product.images.first.url%>" alt="<%=product.name%>" class="img-response" class="img-circle">
+          <p>Made by: <%= product.supplier.name %></p>
+          <p>Description: <%= product.description %></p>
+          <p>Created at: <%= product.friendly_created_at %></p>
+
+        </div>
+      </div>
+    <% end %>
+  </div>
+<%end%>

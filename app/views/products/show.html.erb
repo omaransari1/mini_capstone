@@ -1,0 +1,30 @@
+<div class="well well-sm">
+<h1>This is product number: <%= @product.id %></h1>
+<p><%= @product.name %></p>
+<% if @product.discounted? %>
+    <p class="discount-item">Price: <%= number_to_currency(@product.price) %></p>
+    <p>Discount Item!</p>
+<%else%>
+  <p>$<%= @product.price %></p>
+<%end%>
+<p><%= @product.description %></p>
+<% @product.images.each do |image| %>
+<img src=<%=image.url %> alt="<%=@product.name%>" class="img-response">
+<%end%>
+<div class="btn-group" role="group" aria-label="...">
+  <button type="button" class="btn btn-default"><a href='/products'>Back to products</a></button>
+  <button type="button" class="btn btn-default"><a href='/products'><%= link_to "Destroy this product!", "/products/#{@product.id}", method: :delete %></a></button>
+</div>
+<h1>Order form</h1>
+          <%= form_tag '/carted_products', method: :post do %>
+          <div> 
+            <%= label_tag :quantity %>
+            <%= text_field_tag :quantity %>
+          </div>
+          <div>
+            <%= label_tag :product_id %>
+            <%= hidden_field_tag :product_id, @product.id %>
+          </div>
+          <% submit_tag "Add to cart"%>
+        <%end%>
+</div>

@@ -1,0 +1,15 @@
+<h1>Your order page</h1>
+<h2>Order id: <%= @order.id %></h2>
+
+<% 
+<h2> Quantity: <%= @order.quantity %></h2>
+<hr>
+<h3> Subtotal: <%= @order.subtotal %></h3>
+<h3>Tax: <@order.tax %></h3>
+<h3>Total: <%=@order.total %></h3>
+<hr>
+<h3>Email: <%=@order.user.email%></h3>
+<hr>
+<h3>Product name: <%= @order.product.name %></h3>
+<img src="<%= @order.product.images.first.url %>" alt="">
+<h3>Order created at: <%= @order.created_at %></h3>
